@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5v-3.5L7 13l5-4.5v3.5l3.5-2.5L12 13l-3.5 1.5z"/></svg>
+            <h1>Multi-Agent AI System</h1>
+        </div>
+        <p class="subtitle">Your intelligent query routing assistant.</p>
+        
+        <form id="main-form">
+            <input type="text" id="query-input" placeholder="Ask about the latest news, a research paper, or an uploaded document..." required>
+            <label for="pdf-input" id="pdf-label">Click or Drag to Upload PDF</label>
+            <input type="file" id="pdf-input" accept=".pdf">
+            <button type="submit">Ask</button>
+        </form>
+
+        <div id="loading-spinner" class="hidden"></div>
+
+        <div id="results-container">
+            </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
