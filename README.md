@@ -4,6 +4,17 @@ Live Demo: https://huggingface.co/spaces/AnshWithTech/multi-agent-query-system
 Project Overview
 This project is an intelligent Multi-Agent AI System designed to function as a dynamic and intelligent query router. The core purpose is to analyze a user's natural language query and determine the most effective information retrieval tool to answer it. Instead of relying on a single source, this system leverages a team of specialized agents to ensure the user receives the most relevant and accurate information, whether from a live web search, a scientific database, or a user-uploaded document.
 
+Tech Stack
+Backend: FastAPI
+
+LLM & Embeddings: Groq API, Sentence-Transformers
+
+Vector Store: ChromaDB
+
+Core Libraries: LangChain, arxiv, duckduckgo-search
+
+Deployment: Docker, Hugging Face Spaces
+
 Key Features
 🧠 Dynamic Agent Routing: A central Controller Agent intelligently analyzes user queries and dispatches the task to the most appropriate agent.
 
