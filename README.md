@@ -1,33 +1,43 @@
 Multi-Agent Query System
-This project is an intelligent multi-agent AI system that dynamically routes user queries to the most appropriate information retrieval tool. It's designed to understand the user's intent and choose between a real-time web search, a scientific paper database, or a user-uploaded PDF to find the most relevant answer.
+Live Demo: https://huggingface.co/spaces/AnshWithTech/multi-agent-query-system
 
-Core Features
-🧠 Dynamic Agent Routing: A central Controller Agent analyzes user queries to select the best tool for the job: Web Search, ArXiv, or a PDF RAG agent.
+Project Overview
+This project is an intelligent Multi-Agent AI System designed to function as a dynamic and intelligent query router. The core purpose is to analyze a user's natural language query and determine the most effective information retrieval tool to answer it. Instead of relying on a single source, this system leverages a team of specialized agents to ensure the user receives the most relevant and accurate information, whether from a live web search, a scientific database, or a user-uploaded document.
 
-⚙️ Hybrid Decision Logic: Utilizes a fast, rule-based approach for specific keywords (e.g., "paper," "news") and falls back to an LLM-based router for ambiguous queries.
+Key Features
+🧠 Dynamic Agent Routing: A central Controller Agent intelligently analyzes user queries and dispatches the task to the most appropriate agent.
 
-📄 Retrieval-Augmented Generation (RAG): Allows users to upload a PDF and ask questions directly about its content. The system extracts text, creates embeddings, and retrieves the most relevant passages to answer the query.
+📄 Retrieval-Augmented Generation (RAG): The system allows users to upload PDF documents and ask questions specifically about their content.
 
-🌐 Multi-Tool Integration:
+🌐 Multi-Tool Integration: Includes agents for real-time web searches, querying the ArXiv academic database, and performing RAG on local documents.
 
-Web Agent: Performs real-time web searches for current events and general knowledge.
+✨ LLM-Powered Answer Synthesis: After retrieving information, a fast LLM (via Groq API) generates a coherent, natural-language answer.
 
-ArXiv Agent: Queries the ArXiv database for scientific papers and research.
+🔍 Transparent Reasoning: The system provides the final answer and shows which agent was used and why, ensuring transparency in its decision-making process.
 
-PDF RAG Agent: Analyzes the content of user-provided documents.
+Architecture & Approach
+The system is built on a modern, modular architecture centered around a FastAPI backend. When a user submits a query, it follows a sophisticated workflow designed for both speed and accuracy.
 
-✨ LLM-Powered Answer Synthesis: After retrieving information, the system uses a fast LLM via the Groq API to generate a coherent, natural-language answer for the user.
+Query Ingestion: The user interacts with a clean, modern UI to submit a query and optionally upload a PDF.
 
-Tech Stack
-Backend: FastAPI
+Controller Analysis: The request is sent to the FastAPI backend, where the Controller Agent takes over. It uses a hybrid routing strategy:
 
-LLM & Embeddings: Groq API, Sentence-Transformers
+Rule-Based First: It quickly scans for keywords (e.g., "paper," "news," "document") to make an immediate, deterministic routing decision.
 
-Vector Store: ChromaDB
+LLM-Based Fallback: If no keywords match, the query is sent to a fast Groq LLM, which is prompted to choose the most logical tool for the job.
 
-Core Libraries: LangChain, arxiv, duckduckgo-search
+Information Retrieval: The selected Worker Agent (Web Search, ArXiv, or PDF RAG) executes its task to gather the raw information.
 
-Deployment: Docker, Hugging Face Spaces
+Answer Synthesis & Response: The retrieved context is passed to the Groq LLM a second time. The LLM synthesizes this information into a concise, human-readable answer, which is sent back to the UI along with the controller's rationale.
 
+Dataset and Expected Outputs
+The project uses sample documents in the sample_pdfs/ directory to demonstrate the RAG agent's functionality. When you use the application, you can expect a clear, structured response for every query.
 
-Multi-Agent Query System - https://huggingface.co/spaces/AnshWithTea/multi-query-ai-agent
+For example, after uploading a relevant PDF and asking a question about it, the output will look like this:
+
+Answer
+The primary export mentioned in the document is crystallized data fragments.
+
+Agent Used: PDF_RAG
+
+Rationale: A document has been uploaded and the query refers to it.
