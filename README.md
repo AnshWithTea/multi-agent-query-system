@@ -1,55 +1,39 @@
-Multi-Agent Query System
-Live Demo: https://huggingface.co/spaces/AnshWithTea/multi-query-ai-agent
+# Multi-Query AI Agent 🤖
 
-Project Overview
-This project is an intelligent Multi-Agent AI System designed to function as a dynamic and intelligent query router. The core purpose is to analyze a user's natural language query and determine the most effective information retrieval tool to answer it. Instead of relying on a single source, this system leverages a team of specialized agents to ensure the user receives the most relevant and accurate information, whether from a live web search, a scientific database, or a user-uploaded document.
+An intelligent orchestration engine built with **Python** and **FastAPI**. This system acts as a smart central brain that analyzes user queries and dynamically routes them to the most effective information retrieval tool—whether that's live web data, academic research, or internal documents.
 
-Tech Stack
-Backend: FastAPI
+## 🚀 Features
 
-LLM & Embeddings: Groq API, Sentence-Transformers
+* **Intelligent Query Routing:** Uses an LLM to analyze intent and determine the best source of information.
+* **Multi-Tool Integration:**
+    * **🌐 Live Web Search:** Fetches real-time information for current events and general queries.
+    * **📄 RAG Pipeline:** Custom Retrieval-Augmented Generation system for querying uploaded PDF documents.
+    * **🎓 ArXiv API:** Direct access to scientific papers and academic research.
+* **High Performance:** Built on **FastAPI** for asynchronous, high-speed request handling.
+* **Scalable Architecture:** Designed to easily add more tools (e.g., Wikipedia, Database queries) in the future.
 
-Vector Store: ChromaDB
+## 🛠️ Tech Stack
 
-Core Libraries: LangChain, arxiv, duckduckgo-search
+* **Backend:** Python 3.x
+* **API Framework:** FastAPI
+* **AI/LLM:** (Specify your model here, e.g., OpenAI GPT-4, Google Gemini, local Llama)
+* **Vector Database:** (Specify if used, e.g., FAISS, ChromaDB, Pinecone)
+* **Search Integration:** (Specify provider, e.g., Serper, Google Custom Search)
 
-Deployment: Docker, Hugging Face Spaces
+## 📂 Project Structure
 
-
-Key Features
-🧠 Dynamic Agent Routing: A central Controller Agent intelligently analyzes user queries and dispatches the task to the most appropriate agent.
-
-📄 Retrieval-Augmented Generation (RAG): The system allows users to upload PDF documents and ask questions specifically about their content.
-
-🌐 Multi-Tool Integration: Includes agents for real-time web searches, querying the ArXiv academic database, and performing RAG on local documents.
-
-✨ LLM-Powered Answer Synthesis: After retrieving information, a fast LLM (via Groq API) generates a coherent, natural-language answer.
-
-🔍 Transparent Reasoning: The system provides the final answer and shows which agent was used and why, ensuring transparency in its decision-making process.
-
-Architecture & Approach
-The system is built on a modern, modular architecture centered around a FastAPI backend. When a user submits a query, it follows a sophisticated workflow designed for both speed and accuracy.
-
-Query Ingestion: The user interacts with a clean, modern UI to submit a query and optionally upload a PDF.
-
-Controller Analysis: The request is sent to the FastAPI backend, where the Controller Agent takes over. It uses a hybrid routing strategy:
-
-Rule-Based First: It quickly scans for keywords (e.g., "paper," "news," "document") to make an immediate, deterministic routing decision.
-
-LLM-Based Fallback: If no keywords match, the query is sent to a fast Groq LLM, which is prompted to choose the most logical tool for the job.
-
-Information Retrieval: The selected Worker Agent (Web Search, ArXiv, or PDF RAG) executes its task to gather the raw information.
-
-Answer Synthesis & Response: The retrieved context is passed to the Groq LLM a second time. The LLM synthesizes this information into a concise, human-readable answer, which is sent back to the UI along with the controller's rationale.
-
-Dataset and Expected Outputs
-The project uses sample documents in the sample_pdfs/ directory to demonstrate the RAG agent's functionality. When you use the application, you can expect a clear, structured response for every query.
-
-For example, after uploading a relevant PDF and asking a question about it, the output will look like this:
-
-Answer
-The primary export mentioned in the document is crystallized data fragments.
-
-Agent Used: PDF_RAG
-
-Rationale: A document has been uploaded and the query refers to it.
+```bash
+multi-agent-query-system/
+├── app/
+│   ├── main.py            # Application entry point
+│   ├── agents/            # Logic for the orchestrator agent
+│   ├── tools/
+│   │   ├── web_search.py  # Web search tool implementation
+│   │   ├── arxiv_tool.py  # ArXiv API wrapper
+│   │   └── rag_pipeline.py# PDF processing and retrieval logic
+│   ├── models/            # Pydantic models for request/response
+│   └── utils/             # Helper functions (text processing, etc.)
+├── data/                  # Storage for uploaded PDFs (if local)
+├── .env                   # Environment variables (API Keys)
+├── requirements.txt       # Python dependencies
+└── README.md
