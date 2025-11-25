@@ -1,39 +1,100 @@
-# Multi-Query AI Agent 🤖
+# 🤖 Multi-Agent Query System
 
-An intelligent orchestration engine built with **Python** and **FastAPI**. This system acts as a smart central brain that analyzes user queries and dynamically routes them to the most effective information retrieval tool—whether that's live web data, academic research, or internal documents.
+<div align="center">
+  <strong>An intelligent query system leveraging multiple specialized agents for comprehensive answers</strong>
+</div>
 
-## 🚀 Features
+<div align="center">
+  
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.118.0-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![LangChain](https://img.shields.io/badge/LangChain-0.3.27-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)](https://www.langchain.com/)
+[![Groq](https://img.shields.io/badge/Groq-LLM-orange?style=for-the-badge)](https://groq.com/)
+[![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-* **Intelligent Query Routing:** Uses an LLM to analyze intent and determine the best source of information.
-* **Multi-Tool Integration:**
-    * **🌐 Live Web Search:** Fetches real-time information for current events and general queries.
-    * **📄 RAG Pipeline:** Custom Retrieval-Augmented Generation system for querying uploaded PDF documents.
-    * **🎓 ArXiv API:** Direct access to scientific papers and academic research.
-* **High Performance:** Built on **FastAPI** for asynchronous, high-speed request handling.
-* **Scalable Architecture:** Designed to easily add more tools (e.g., Wikipedia, Database queries) in the future.
+</div>
 
-## 🛠️ Tech Stack
+## 🌟 Project Vision
 
-* **Backend:** Python 3.x
-* **API Framework:** FastAPI
-* **AI/LLM:** (Specify your model here, e.g., OpenAI GPT-4, Google Gemini, local Llama)
-* **Vector Database:** (Specify if used, e.g., FAISS, ChromaDB, Pinecone)
-* **Search Integration:** (Specify provider, e.g., Serper, Google Custom Search)
+The **Multi-Agent Query System** is designed to overcome the limitations of single-source information retrieval. By orchestrating a team of specialized agents—including a Web Search Agent, an Arxiv Research Agent, and a PDF RAG Agent—this system provides accurate, context-aware, and synthesized answers to complex user queries. It intelligently routes questions to the most appropriate agent, ensuring efficiency and depth.
 
-## 📂 Project Structure
+## ✨ Features
+
+- **🧠 Intelligent Query Routing**: A Controller Agent analyzes the user's query and routes it to the best-suited specialist.
+- **📄 PDF RAG (Retrieval-Augmented Generation)**: Upload and query your own PDF documents with context-aware retrieval.
+- **🌐 Web Search Integration**: Real-time web search capabilities using DuckDuckGo for up-to-date information.
+- **📚 Arxiv Research**: Dedicated agent for searching and summarizing academic papers from Arxiv.
+- **💬 Answer Synthesis**: Combines retrieved context into a coherent, natural language response.
+- **🖥️ Clean UI**: A simple and responsive web interface for interacting with the system.
+
+## 🏗️ Architecture
+
+The system is built on a modular architecture:
+
+1.  **Frontend**: HTML/CSS/JS (Jinja2 Templates) for user interaction.
+2.  **Backend**: FastAPI server handling API requests and agent orchestration.
+3.  **Agents**:
+    *   **Controller Agent**: The "brain" that decides which tool to use.
+    *   **Web Agent**: Fetches data from the internet.
+    *   **Arxiv Agent**: Fetches academic papers.
+    *   **PDF RAG Agent**: Handles document embedding (ChromaDB) and retrieval.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+-   **Python 3.10+**
+-   **Groq API Key**: You need an API key from [Groq](https://console.groq.com/) to power the LLM.
+
+### Installation
+
+1.  **Clone the repository**
+
+    ```bash
+    git clone https://github.com/AnshWithTea/multi-agent-query-system.git
+    cd multi-agent-query-system
+    ```
+
+2.  **Set up environment variables**
+
+    Create a `.env` file in the root directory and add your Groq API key:
+
+    ```bash
+    GROQ_API_KEY=your_groq_api_key_here
+    ```
+
+3.  **Install dependencies**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Running the Application
+
+You can run the application using Python directly:
 
 ```bash
-multi-agent-query-system/
-├── app/
-│   ├── main.py            # Application entry point
-│   ├── agents/            # Logic for the orchestrator agent
-│   ├── tools/
-│   │   ├── web_search.py  # Web search tool implementation
-│   │   ├── arxiv_tool.py  # ArXiv API wrapper
-│   │   └── rag_pipeline.py# PDF processing and retrieval logic
-│   ├── models/            # Pydantic models for request/response
-│   └── utils/             # Helper functions (text processing, etc.)
-├── data/                  # Storage for uploaded PDFs (if local)
-├── .env                   # Environment variables (API Keys)
-├── requirements.txt       # Python dependencies
-└── README.md
+python main.py
+```
+
+Or using Uvicorn:
+
+```bash
+uvicorn main:app --reload
+```
+
+The application will be available at `http://localhost:8000`.
+
+## 🤝 Contributing
+
+We welcome contributions! If you have ideas for new agents or improvements, please feel free to open an issue or submit a pull request.
+
+## 📝 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+<div align="center">
+  <p>Built with ❤️ using FastAPI and LangChain</p>
+</div>
